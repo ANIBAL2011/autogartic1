@@ -41,10 +41,10 @@ process.stdin.on("keypress", function (ch, key) {
 
   if (key && key.name == "s") {
     // ##############  start scanning and plotting ######################
-    for (var y = 0; y < loadedimage.height; y++) {
-      for (var x = 0; x < loadedimage.width; x++) {
+    for (var y = 0; y < loadedimage.height; y = y + 4) {
+      for (var x = 0; x < loadedimage.width; x = x + 4) {
         robot.moveMouse(mousestartx + x, mousestarty + y);
-        if (loadedimage.data[plotterstep] < 150) {
+        if (loadedimage.data[y * loadedimage.width + x] < 150) {
           robot.mouseClick();
         }
         plotterstep = plotterstep + 1;

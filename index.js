@@ -11,7 +11,6 @@ var mousestarty;
 
 var plotterx;
 var plottery;
-var plotterstep = 0;
 
 keypress(process.stdin);
 process.stdin.on("keypress", function (ch, key) {
@@ -25,6 +24,9 @@ process.stdin.on("keypress", function (ch, key) {
     // ##############  load image file ######################
     Image.load("image.jpg").then((img) => {
       loadedimage = img.grey();
+      // loadedimage = cannyEdgeDetector(loadedimage);
+      // loadedimage = loadedimage.invert();
+      // loadedimage.save("result.jpg");
       console.log(
         `Image loaded in BW > Width=${loadedimage.width} Height=${loadedimage.height} Length=${loadedimage.data.length}`
       );
@@ -47,7 +49,6 @@ process.stdin.on("keypress", function (ch, key) {
         if (loadedimage.data[y * loadedimage.width + x] < 150) {
           robot.mouseClick();
         }
-        plotterstep = plotterstep + 1;
       }
     }
 
@@ -59,6 +60,3 @@ process.stdin.on("keypress", function (ch, key) {
 
 process.stdin.setRawMode(true);
 process.stdin.resume();
-
-//   const edge = cannyEdgeDetector(grey);
-//   const invt = edge.invert();

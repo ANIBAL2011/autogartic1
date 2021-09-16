@@ -23,7 +23,7 @@ process.stdin.on("keypress", function (ch, key) {
   if (key && key.name == "l") {
     // ##############  load image file ######################
     Image.load("image.jpg").then((img) => {
-      loadedimage = img.grey().resize({ width: 400 });
+      loadedimage = img.grey().resize({ width: 350 });
 
       // loadedimage = cannyEdgeDetector(loadedimage);
       // loadedimage = loadedimage.invert();
@@ -44,8 +44,8 @@ process.stdin.on("keypress", function (ch, key) {
 
   if (key && key.name == "s") {
     // ##############  start scanning and plotting ######################
-    for (var y = 0; y < loadedimage.height; y = y + 4) {
-      for (var x = 0; x < loadedimage.width; x = x + 4) {
+    for (var y = 0; y < loadedimage.height; y = y + 8) {
+      for (var x = 0; x < loadedimage.width; x = x + 8) {
         robot.moveMouse(mousestartx + x, mousestarty + y);
         if (loadedimage.data[y * loadedimage.width + x] < 150) {
           robot.mouseClick();

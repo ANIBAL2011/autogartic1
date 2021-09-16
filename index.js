@@ -23,7 +23,8 @@ process.stdin.on("keypress", function (ch, key) {
   if (key && key.name == "l") {
     // ##############  load image file ######################
     Image.load("image.jpg").then((img) => {
-      loadedimage = img.grey();
+      loadedimage = img.grey().resize({ width: 200 });
+
       // loadedimage = cannyEdgeDetector(loadedimage);
       // loadedimage = loadedimage.invert();
       // loadedimage.save("result.jpg");
